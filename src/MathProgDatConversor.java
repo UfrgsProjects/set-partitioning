@@ -110,6 +110,8 @@ public class MathProgDatConversor {
 			archive.writeLine("");
 		}
 		archive.writeLineNoBreak(";");
+		archive.writeLine("");
+		archive.writeLineNoBreak("end;");
 	}
 	/**
 	 * Escreve quantas colunas matriz terá. Ex: param partition : 1 2 3 :=
