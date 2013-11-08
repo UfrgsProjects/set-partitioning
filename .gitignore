@@ -12,6 +12,7 @@
 *.zip
 *.sol
 *.log
+*.txt
 
 # --Latex
 *.acn
