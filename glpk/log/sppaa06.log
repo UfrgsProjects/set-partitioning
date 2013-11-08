@@ -1,0 +1,54 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/sppaa06.dat -o sol/sppaa06.sol --tmlim 5400 --log
+ log/sppaa06.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/sppaa06.dat...
+dat/sppaa06.dat:7944: warning: final NL missing before end of file
+dat/sppaa06.dat:7944: warning: unexpected end of file; missing end statement inserted
+7944 lines were read
+Generating cost...
+Generating Intersection...
+Model has been successfully generated
+GLPK Integer Optimizer, v4.45
+647 rows, 7292 columns, 59020 non-zeros
+7292 integer variables, all of which are binary
+Preprocessing...
+646 rows, 7292 columns, 51728 non-zeros
+7292 integer variables, all of which are binary
+Scaling...
+ A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+Problem data seem to be well scaled
+Constructing initial basis...
+Size of triangular part = 488
+Solving LP relaxation...
+GLPK Simplex Optimizer, v4.45
+646 rows, 7292 columns, 51728 non-zeros
+      0: obj =   3.910000000e+04  infeas =  3.170e+02 (158)
+    500: obj =   4.219969673e+04  infeas =  2.556e+01 (111)
+   1000: obj =   4.078055564e+04  infeas =  6.086e+00 (103)
+   1500: obj =   3.977931712e+04  infeas =  2.584e-01 (95)
+*  1577: obj =   3.962165183e+04  infeas =  1.591e-14 (93)
+*  2000: obj =   3.320973776e+04  infeas =  1.351e-13 (92)
+*  2500: obj =   3.073094597e+04  infeas =  2.732e-14 (88)
+*  3000: obj =   2.875294910e+04  infeas =  3.879e-14 (87)
+*  3500: obj =   2.805284079e+04  infeas =  1.569e-14 (87)
+*  4000: obj =   2.748191201e+04  infeas =  7.267e-14 (86)
+*  4500: obj =   2.722111688e+04  infeas =  3.557e-14 (86)
+*  4972: obj =   2.697718750e+04  infeas =  5.296e-14 (86)
+OPTIMAL SOLUTION FOUND
+Integer optimization begins...
++  4972: mip =     not found yet >=              -inf        (1; 0)
++  6706: >>>>>   2.742700000e+04 >=   2.697900000e+04   1.6% (21; 0)
++  9891: mip =   2.742700000e+04 >=   2.697900000e+04   1.6% (50; 2)
++ 11370: >>>>>   2.726700000e+04 >=   2.697900000e+04   1.1% (64; 3)
++ 11889: >>>>>   2.706100000e+04 >=   2.697900000e+04   0.3% (49; 42)
++ 13320: >>>>>   2.704400000e+04 >=   2.697900000e+04   0.2% (23; 111)
++ 15214: >>>>>   2.704300000e+04 >=   2.700600000e+04   0.1% (19; 138)
++ 16620: >>>>>   2.704000000e+04 >=   2.700800000e+04   0.1% (17; 161)
++ 17140: mip =   2.704000000e+04 >=     tree is empty   0.0% (0; 219)
+INTEGER OPTIMAL SOLUTION FOUND
+Time used:   19.2 secs
+Memory used: 447.7 Mb (469470262 bytes)
+Writing MIP solution to `sol/sppaa06.sol'...

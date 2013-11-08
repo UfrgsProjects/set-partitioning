@@ -1,0 +1,38 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/sppnw16.dat -o sol/sppnw16.sol --tmlim 5400 --log
+ log/sppnw16.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/sppnw16.dat...
+dat/sppnw16.dat:148778: warning: final NL missing before end of file
+dat/sppnw16.dat:148778: warning: unexpected end of file; missing end statement inserted
+148778 lines were read
+Generating cost...
+Generating Intersection...
+Model has been successfully generated
+GLPK Integer Optimizer, v4.45
+140 rows, 148633 columns, 1650453 non-zeros
+148633 integer variables, all of which are binary
+Preprocessing...
+139 rows, 148633 columns, 1501820 non-zeros
+148633 integer variables, all of which are binary
+Scaling...
+ A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+Problem data seem to be well scaled
+Constructing initial basis...
+Size of triangular part = 139
+Solving LP relaxation...
+GLPK Simplex Optimizer, v4.45
+139 rows, 148633 columns, 1501820 non-zeros
+*     0: obj =   1.326250000e+06  infeas =  0.000e+00 (0)
+*     2: obj =   1.181590000e+06  infeas =  0.000e+00 (0)
+OPTIMAL SOLUTION FOUND
+Integer optimization begins...
++     2: mip =     not found yet >=              -inf        (1; 0)
++     2: >>>>>   1.181590000e+06 >=   1.181590000e+06   0.0% (1; 0)
++     2: mip =   1.181590000e+06 >=     tree is empty   0.0% (0; 1)
+INTEGER OPTIMAL SOLUTION FOUND
+Time used:   3.3 secs
+Memory used: 2186.1 Mb (2292303645 bytes)
+Writing MIP solution to `sol/sppnw16.sol'...

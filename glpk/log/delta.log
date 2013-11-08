@@ -1,0 +1,38 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/delta.dat -o sol/delta.sol --tmlim 5400 --log log/delta.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/delta.dat...
+dat/delta.dat:1326: warning: final NL missing before end of file
+dat/delta.dat:1326: warning: unexpected end of file; missing end statement inserted
+1326 lines were read
+Generating cost...
+Generating Intersection...
+Model has been successfully generated
+GLPK Integer Optimizer, v4.45
+127 rows, 1194 columns, 11940 non-zeros
+1194 integer variables, all of which are binary
+Preprocessing...
+126 rows, 1194 columns, 10746 non-zeros
+1194 integer variables, all of which are binary
+Scaling...
+ A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+Problem data seem to be well scaled
+Constructing initial basis...
+Size of triangular part = 76
+Solving LP relaxation...
+GLPK Simplex Optimizer, v4.45
+126 rows, 1194 columns, 10746 non-zeros
+      0: obj =   1.620000000e+02  infeas =  9.950e+02 (50)
+*   189: obj =   1.260000000e+02  infeas =  4.201e-13 (34)
+OPTIMAL SOLUTION FOUND
+Integer optimization begins...
++   189: mip =     not found yet >=              -inf        (1; 0)
++ 26409: mip =     not found yet >=   1.260000000e+02        (23; 475)
++ 26897: >>>>>   1.260000000e+02 >=   1.260000000e+02   0.0% (18; 488)
++ 26897: mip =   1.260000000e+02 >=     tree is empty   0.0% (0; 533)
+INTEGER OPTIMAL SOLUTION FOUND
+Time used:   5.1 secs
+Memory used: 16.4 Mb (17148064 bytes)
+Writing MIP solution to `sol/delta.sol'...

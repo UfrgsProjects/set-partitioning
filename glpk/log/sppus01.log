@@ -1,0 +1,9 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/sppus01.dat -o sol/sppus01.sol --tmlim 5400 --log
+ log/sppus01.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/sppus01.dat...
+glp_malloc: no memory available
+Error detected in file glpenv05.c at line 70

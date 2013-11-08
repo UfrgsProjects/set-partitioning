@@ -1,0 +1,38 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/meteor.dat -o sol/meteor.sol --tmlim 5400 --log log/meteor.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/meteor.dat...
+dat/meteor.dat:2530: warning: final NL missing before end of file
+dat/meteor.dat:2530: warning: unexpected end of file; missing end statement inserted
+2530 lines were read
+Generating cost...
+Generating Intersection...
+Model has been successfully generated
+GLPK Integer Optimizer, v4.45
+61 rows, 2464 columns, 17248 non-zeros
+2464 integer variables, all of which are binary
+Preprocessing...
+60 rows, 2464 columns, 14784 non-zeros
+2464 integer variables, all of which are binary
+Scaling...
+ A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+Problem data seem to be well scaled
+Constructing initial basis...
+Size of triangular part = 50
+Solving LP relaxation...
+GLPK Simplex Optimizer, v4.45
+60 rows, 2464 columns, 14784 non-zeros
+      0: obj =   3.600000000e+01  infeas =  2.430e+02 (10)
+*    91: obj =   6.000000000e+01  infeas =  2.442e-15 (1)
+OPTIMAL SOLUTION FOUND
+Integer optimization begins...
++    91: mip =     not found yet >=              -inf        (1; 0)
++ 34039: mip =     not found yet >=   6.000000000e+01        (25; 356)
++ 47371: >>>>>   6.000000000e+01 >=   6.000000000e+01 < 0.1% (32; 629)
++ 47371: mip =   6.000000000e+01 >=     tree is empty   0.0% (0; 699)
+INTEGER OPTIMAL SOLUTION FOUND
+Time used:   7.5 secs
+Memory used: 17.6 Mb (18443560 bytes)
+Writing MIP solution to `sol/meteor.sol'...

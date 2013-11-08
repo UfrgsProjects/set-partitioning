@@ -1,0 +1,42 @@
+GLPSOL: GLPK LP/MIP Solver, v4.45
+Parameter(s) specified in the command line:
+ -m set_part.mod -d dat/heart.dat -o sol/heart.sol --tmlim 5400 --log log/heart.log
+Reading model section from set_part.mod...
+18 lines were read
+Reading data section from dat/heart.dat...
+dat/heart.dat:1112: warning: final NL missing before end of file
+dat/heart.dat:1112: warning: unexpected end of file; missing end statement inserted
+1112 lines were read
+Generating cost...
+Generating Intersection...
+Model has been successfully generated
+GLPK Integer Optimizer, v4.45
+181 rows, 926 columns, 9260 non-zeros
+926 integer variables, all of which are binary
+Preprocessing...
+180 rows, 926 columns, 8334 non-zeros
+926 integer variables, all of which are binary
+Scaling...
+ A: min|aij| =  1.000e+00  max|aij| =  1.000e+00  ratio =  1.000e+00
+Problem data seem to be well scaled
+Constructing initial basis...
+Size of triangular part = 97
+Solving LP relaxation...
+GLPK Simplex Optimizer, v4.45
+180 rows, 926 columns, 8334 non-zeros
+      0: obj =   2.520000000e+02  infeas =  2.360e+02 (83)
+*   182: obj =   1.800000000e+02  infeas =  1.119e-13 (64)
+OPTIMAL SOLUTION FOUND
+Integer optimization begins...
++   182: mip =     not found yet >=              -inf        (1; 0)
++ 25692: mip =     not found yet >=   1.800000000e+02        (7; 617)
++ 52975: mip =     not found yet >=   1.800000000e+02        (11; 1199)
++ 80339: mip =     not found yet >=   1.800000000e+02        (10; 1896)
++106981: mip =     not found yet >=   1.800000000e+02        (14; 2643)
++138625: mip =     not found yet >=   1.800000000e+02        (10; 3316)
++155803: >>>>>   1.800000000e+02 >=   1.800000000e+02 < 0.1% (14; 3814)
++155803: mip =   1.800000000e+02 >=     tree is empty   0.0% (0; 3849)
+INTEGER OPTIMAL SOLUTION FOUND
+Time used:   28.2 secs
+Memory used: 17.5 Mb (18315714 bytes)
+Writing MIP solution to `sol/heart.sol'...
