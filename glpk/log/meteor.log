@@ -4,9 +4,8 @@ Parameter(s) specified in the command line:
 Reading model section from set_part.mod...
 18 lines were read
 Reading data section from dat/meteor.dat...
-dat/meteor.dat:2530: warning: final NL missing before end of file
-dat/meteor.dat:2530: warning: unexpected end of file; missing end statement inserted
-2530 lines were read
+dat/meteor.dat:2531: warning: final NL missing before end of file
+2531 lines were read
 Generating cost...
 Generating Intersection...
 Model has been successfully generated
@@ -29,7 +28,7 @@ GLPK Simplex Optimizer, v4.45
 OPTIMAL SOLUTION FOUND
 Integer optimization begins...
 +    91: mip =     not found yet >=              -inf        (1; 0)
-+ 34039: mip =     not found yet >=   6.000000000e+01        (25; 356)
++ 34179: mip =     not found yet >=   6.000000000e+01        (25; 371)
 + 47371: >>>>>   6.000000000e+01 >=   6.000000000e+01 < 0.1% (32; 629)
 + 47371: mip =   6.000000000e+01 >=     tree is empty   0.0% (0; 699)
 INTEGER OPTIMAL SOLUTION FOUND

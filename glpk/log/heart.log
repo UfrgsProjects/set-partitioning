@@ -4,9 +4,8 @@ Parameter(s) specified in the command line:
 Reading model section from set_part.mod...
 18 lines were read
 Reading data section from dat/heart.dat...
-dat/heart.dat:1112: warning: final NL missing before end of file
-dat/heart.dat:1112: warning: unexpected end of file; missing end statement inserted
-1112 lines were read
+dat/heart.dat:1113: warning: final NL missing before end of file
+1113 lines were read
 Generating cost...
 Generating Intersection...
 Model has been successfully generated
@@ -29,14 +28,14 @@ GLPK Simplex Optimizer, v4.45
 OPTIMAL SOLUTION FOUND
 Integer optimization begins...
 +   182: mip =     not found yet >=              -inf        (1; 0)
-+ 25692: mip =     not found yet >=   1.800000000e+02        (7; 617)
-+ 52975: mip =     not found yet >=   1.800000000e+02        (11; 1199)
-+ 80339: mip =     not found yet >=   1.800000000e+02        (10; 1896)
-+106981: mip =     not found yet >=   1.800000000e+02        (14; 2643)
-+138625: mip =     not found yet >=   1.800000000e+02        (10; 3316)
++ 27480: mip =     not found yet >=   1.800000000e+02        (12; 635)
++ 55304: mip =     not found yet >=   1.800000000e+02        (17; 1252)
++ 83468: mip =     not found yet >=   1.800000000e+02        (14; 2007)
++110533: mip =     not found yet >=   1.800000000e+02        (9; 2742)
++142589: mip =     not found yet >=   1.800000000e+02        (14; 3437)
 +155803: >>>>>   1.800000000e+02 >=   1.800000000e+02 < 0.1% (14; 3814)
 +155803: mip =   1.800000000e+02 >=     tree is empty   0.0% (0; 3849)
 INTEGER OPTIMAL SOLUTION FOUND
-Time used:   28.2 secs
+Time used:   27.3 secs
 Memory used: 17.5 Mb (18315714 bytes)
 Writing MIP solution to `sol/heart.sol'...

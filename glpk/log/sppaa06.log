@@ -5,9 +5,8 @@ Parameter(s) specified in the command line:
 Reading model section from set_part.mod...
 18 lines were read
 Reading data section from dat/sppaa06.dat...
-dat/sppaa06.dat:7944: warning: final NL missing before end of file
-dat/sppaa06.dat:7944: warning: unexpected end of file; missing end statement inserted
-7944 lines were read
+dat/sppaa06.dat:7945: warning: final NL missing before end of file
+7945 lines were read
 Generating cost...
 Generating Intersection...
 Model has been successfully generated
@@ -41,7 +40,7 @@ OPTIMAL SOLUTION FOUND
 Integer optimization begins...
 +  4972: mip =     not found yet >=              -inf        (1; 0)
 +  6706: >>>>>   2.742700000e+04 >=   2.697900000e+04   1.6% (21; 0)
-+  9891: mip =   2.742700000e+04 >=   2.697900000e+04   1.6% (50; 2)
++ 10386: mip =   2.742700000e+04 >=   2.697900000e+04   1.6% (56; 2)
 + 11370: >>>>>   2.726700000e+04 >=   2.697900000e+04   1.1% (64; 3)
 + 11889: >>>>>   2.706100000e+04 >=   2.697900000e+04   0.3% (49; 42)
 + 13320: >>>>>   2.704400000e+04 >=   2.697900000e+04   0.2% (23; 111)
@@ -49,6 +48,6 @@ Integer optimization begins...
 + 16620: >>>>>   2.704000000e+04 >=   2.700800000e+04   0.1% (17; 161)
 + 17140: mip =   2.704000000e+04 >=     tree is empty   0.0% (0; 219)
 INTEGER OPTIMAL SOLUTION FOUND
-Time used:   19.2 secs
+Time used:   17.2 secs
 Memory used: 447.7 Mb (469470262 bytes)
 Writing MIP solution to `sol/sppaa06.sol'...

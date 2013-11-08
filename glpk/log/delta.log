@@ -4,9 +4,8 @@ Parameter(s) specified in the command line:
 Reading model section from set_part.mod...
 18 lines were read
 Reading data section from dat/delta.dat...
-dat/delta.dat:1326: warning: final NL missing before end of file
-dat/delta.dat:1326: warning: unexpected end of file; missing end statement inserted
-1326 lines were read
+dat/delta.dat:1327: warning: final NL missing before end of file
+1327 lines were read
 Generating cost...
 Generating Intersection...
 Model has been successfully generated
@@ -29,10 +28,9 @@ GLPK Simplex Optimizer, v4.45
 OPTIMAL SOLUTION FOUND
 Integer optimization begins...
 +   189: mip =     not found yet >=              -inf        (1; 0)
-+ 26409: mip =     not found yet >=   1.260000000e+02        (23; 475)
 + 26897: >>>>>   1.260000000e+02 >=   1.260000000e+02   0.0% (18; 488)
 + 26897: mip =   1.260000000e+02 >=     tree is empty   0.0% (0; 533)
 INTEGER OPTIMAL SOLUTION FOUND
-Time used:   5.1 secs
+Time used:   5.0 secs
 Memory used: 16.4 Mb (17148064 bytes)
 Writing MIP solution to `sol/delta.sol'...

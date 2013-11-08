@@ -5,9 +5,8 @@ Parameter(s) specified in the command line:
 Reading model section from set_part.mod...
 18 lines were read
 Reading data section from dat/sppnw05.dat...
-dat/sppnw05.dat:288584: warning: final NL missing before end of file
-dat/sppnw05.dat:288584: warning: unexpected end of file; missing end statement inserted
-288584 lines were read
+dat/sppnw05.dat:288585: warning: final NL missing before end of file
+288585 lines were read
 Generating cost...
 Generating Intersection...
 Model has been successfully generated
@@ -33,6 +32,6 @@ Integer optimization begins...
 +   119: >>>>>   1.328780000e+05 >=   1.328780000e+05   0.0% (1; 0)
 +   119: mip =   1.328780000e+05 >=     tree is empty   0.0% (0; 1)
 INTEGER OPTIMAL SOLUTION FOUND
-Time used:   5.6 secs
+Time used:   5.4 secs
 Memory used: 2346.3 Mb (2460236589 bytes)
 Writing MIP solution to `sol/sppnw05.sol'...
