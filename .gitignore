@@ -11,7 +11,6 @@
 *.gz
 *.zip
 *.sol
-*.log
 *.txt
 
 # --Latex
