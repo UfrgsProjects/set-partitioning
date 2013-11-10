@@ -10,13 +10,13 @@ import java.util.TreeSet;
 public class Parsing {
 
 	private Set<SubSet> partitions;
+	private Set<Integer> universe;
 	private Archive archive;
-	private Solution solution;
-	
+		
 	// CONSTRUTOR
 	public Parsing(String path, int order){
 		partitions = chooseOrdenation(order); 
-		solution = new Solution();
+		universe = new HashSet<Integer>();
 		archive = new Archive(path);
 		parse();
 	}
@@ -32,15 +32,14 @@ public class Parsing {
 		}
 		return choice;
 	}
-	
-	
+		
 	public void parse(){
 		int line = 0;	
 		while(archive.canRead()){
 			String data = archive.getData();
 			String[] splitData = data.trim().split(" +");	
 			if(line == 0)
-				solution.createUniverse(getLines(splitData));
+				createUniverse(getLines(splitData));
 			else
 				partitions.add(new SubSet(line, getCost(splitData), getSubSet(splitData)));
 			line++;	
@@ -56,6 +55,11 @@ public class Parsing {
 		return Integer.parseInt(line[0]);
 	}
 	
+	private void createUniverse(int elements){
+		for(int i = 0; i < elements; i++)
+			universe.add(i+1);
+	}
+	
 	private Set<Integer> getSubSet(String[] line){
 		Set<Integer> set = new HashSet<Integer>();
 		for(int i = 2; i < line.length; i++)
@@ -69,11 +73,7 @@ public class Parsing {
 		return partitions;
 	}
 
-	public Solution getSolution() {
-		return solution;
+	public Set<Integer> getUniverse(){
+		return universe;
 	}
-	
-	
-	
-	
 }

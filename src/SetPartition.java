@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -34,14 +35,14 @@ public class SetPartition{
 			    return;	
 	  	}
 	  	   
-	   //"/home/rodrigo/set-partitioning/instancias/sppnw32.txt" 
+	   //"/home/rodrigo/set-partitioning/instancias/sppnw32.txt"   14877
 	   Parsing parsing = new Parsing(directory, ordenation); 	
    	   partitions = parsing.getPartitions();
-	   solution = parsing.getSolution();	
-   	      	   
-   	   
-   	   
-   	   
+	   solution = new Solution(parsing.getUniverse(),partitions);   
+	   solution.ShowSolution();
+	   System.out.println(solution.getCost());
+	   
+   	  /* 
 	   Iterator<SubSet> i = partitions.iterator();	
 	   long tempoInicial = System.currentTimeMillis();
 	   while(i.hasNext())
@@ -49,8 +50,10 @@ public class SetPartition{
 	   long tempoFinal = System.currentTimeMillis();
 	   System.out.printf("%.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
 	   System.out.println("quantidade: "+partitions.size());
-	  
+	  */
 	   
+	   
+	  
 	}
     
     
