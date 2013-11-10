@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 
@@ -8,19 +9,31 @@ import java.util.Set;
  */
 public class Parsing {
 
-	private Set<SubSet> partitions;// Hash com todas as partições -need to be sorted
+	private Set<SubSet> partitions;
 	private Archive archive;
 	private Solution solution;
 	
 	// CONSTRUTOR
-	public Parsing(String path){
-		partitions = new HashSet<SubSet>();
+	public Parsing(String path, int order){
+		partitions = chooseOrdenation(order); 
 		solution = new Solution();
 		archive = new Archive(path);
 		parse();
 	}
 
 	// METODOS
+	public Set<SubSet> chooseOrdenation(int ordenation){
+		Set<SubSet> choice = null;
+		switch(ordenation){
+			case 0 : choice = new TreeSet<SubSet>( new SubSetIdComparator() ); break;
+			case 1 : choice = new TreeSet<SubSet>( new SubSetCostComparator() ); break;
+			case 2 : choice = new TreeSet<SubSet>( new SubSetSizeComparator() ); break;
+			case 3 : choice = new TreeSet<SubSet>( new SubSetCostSizeComparator()); break; 
+		}
+		return choice;
+	}
+	
+	
 	public void parse(){
 		int line = 0;	
 		while(archive.canRead()){
@@ -51,6 +64,7 @@ public class Parsing {
 	}
 
 	// GETTERS E SETTERS
+
 	public Set<SubSet> getPartitions() {
 		return partitions;
 	}

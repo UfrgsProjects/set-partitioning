@@ -17,6 +17,20 @@ public class SubSetSizeComparator implements Comparator<SubSet>{
 			value = -1;
 		else if(s1Size > s2Size)	
 			value = 1;
+		else if(s1Size == s2Size)
+			value = idAnalysis(S1, S2);
 		return value;
 	}
+	
+	public int idAnalysis(SubSet o1, SubSet o2){
+		int value = 0;
+		if(o1.getId() < o2.getId())
+			value = -1;
+		else if(o1.getId() > o2.getId())
+			value = 1;
+		return value;
+	
+	}
+	
+	
 }

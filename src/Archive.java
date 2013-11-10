@@ -67,5 +67,12 @@ public class Archive {
 		closeArchive();
 		makeFile(filePath);
 	}
+
+	@Override
+	public String toString() {
+		return "Archive [file=" + file.getName() + "]";
+	}
+	
+	
 	
 }
