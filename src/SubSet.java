@@ -38,7 +38,7 @@ public class SubSet{
 		return "SubSet [id=" + id + ", cost=" + cost +", SubSet= "+ s + "]";
 	}
 }
-
+/*
 class Key{
 	private int id;
 	private int cost;
@@ -73,5 +73,6 @@ class Key{
 	public String toString() {
 		return "Key [id=" + id + ", cost=" + cost + ", size=" + size + "]";
 	}
-	
+
 }
+*/

@@ -11,24 +11,21 @@ import com.google.common.collect.Sets;
  */
 public class ConstructiveHeuristic {
 
-	
-	public void findInicialSolution(Set<SubSet> partitions, Solution solution){
-		boolean check = false;
-		
+	/**
+	 * Cria solução inicial do problema
+	 * XXX Solução nao é factível, pois o SPP é muito restrito
+	 * @param partitions
+	 * @param solution
+	 */
+	public static void findInicialSolution(Set<SubSet> partitions, Solution solution){
 		for (SubSet subSet : partitions) {
-			if(Sets.intersection(subSet.getPartition(), solution.getPartitionSolutionUsed()).isEmpty()){
+			if(Sets.intersection(subSet.getPartition(), solution.getCover()).isEmpty()){
 				solution.getPartitionSolution().add(subSet);
-				solution.getPartitionSolutionUsed().addAll(subSet.getPartition());
+				solution.getCover().addAll(subSet.getPartition());
 				solution.addCost(subSet.getCost());
-				check = true;
-			}
-				
-			if(check == true && solution.solutionCoverUniverse()){
-				System.out.println("find");
-				break;
 			}else
-				check = false;
-			
+				solution.getPartitionNotUsed().add(subSet);
 		}
+		solution.getNotCover().addAll(Sets.difference(solution.getUniverse(), solution.getCover()));
 	}
 }

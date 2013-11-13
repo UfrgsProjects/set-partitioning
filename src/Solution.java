@@ -10,23 +10,52 @@ import com.google.common.collect.Sets;
 */
 public class Solution{
 
-	private Set<Integer> universe;
-	private Set<Integer> partitionSolutionUsed;
-	private Set<SubSet> partitionSolution; // solution
+	private Set<Integer> universe; // Elementos do conjunto
+	private Set<Integer> cover; 	// Elementos cobertos do universo
+	private Set<Integer> notCover; // Elementos não cobertos do universo
+	private Set<SubSet> partitionSolution; 
+	private Set<SubSet> PartitionNotUsed;
 	private int cost;
-	private Set<SubSet> idPartitionNotUsed;
 	
-	public Solution(Set<Integer> universe, Set<SubSet> partitions){
-		this.universe = universe; // Set to be cover
-		partitionSolution = new HashSet<SubSet>();
-		idPartitionNotUsed = new HashSet<SubSet>();
-		cost = 0;
-		partitionSolutionUsed = new HashSet<Integer>();
-		new ConstructiveHeuristic().findInicialSolution(partitions, this);
+	
+	public Solution(Set<Integer> universe){
+		this.universe = universe; 
+		this.partitionSolution = new HashSet<SubSet>();
+		this.PartitionNotUsed = new HashSet<SubSet>();
+		this.cover = new HashSet<Integer>();
+		this.notCover = new HashSet<Integer>();
+		this.cost = 0;
+		//new ConstructiveHeuristic().findInicialSolution(partitions, this);
 	}
 
 /* -------- METHODS -------- */
+	/**
+	 * Retorna valor boolean se solução é factível
+	 * @return boolean
+	 */
+	public boolean feasible(){
+		//notCover.isEmpty();
+		return Sets.difference(universe, cover).isEmpty();
+	}
+	/**
+	 * 	Imprime Solução	  
+	 */
+	public void ShowSolution(){
+		for (SubSet subSet : partitionSolution) 
+			System.out.println(subSet.toString());
 		
+		if(! notCover.isEmpty()){
+			System.out.println("Solução não Factível: ");
+			for (Integer i : notCover) 
+				System.out.print(i +" ");
+			System.out.println();
+		}
+	}	
+	
+	public void showPartitionsNotUsed(){
+		for (SubSet s : PartitionNotUsed) 
+			System.out.println(s.toString());
+	}
 	
 	public void addCost(int value){
 		this.cost += value;
@@ -35,23 +64,6 @@ public class Solution{
 	public void subCost(int value){
 		this.cost -= value;
 	}
-	
-	public boolean solutionCoverUniverse(){
-		return Sets.difference(universe, partitionSolutionUsed).isEmpty();
-	}
-	
-	public Set<Integer> elementsCoverBySet(Set<SubSet> set){
-		Set<Integer> s = new HashSet<Integer>();
-		for (SubSet subSet : set) 
-			s.addAll(subSet.getPartition());
-		return s;
-	}
-	
-	public void ShowSolution(){
-		for (SubSet subSet : partitionSolution) 
-			System.out.println(subSet.toString());
-	}
-	
 /* ----- GETTERS E SETTERS ----- */
 	
 	public Set<Integer> getUniverse(){
@@ -66,11 +78,15 @@ public class Solution{
 		return this.cost;		
 	}
 
-	public Set<Integer> getPartitionSolutionUsed() {
-		return partitionSolutionUsed;
+	public Set<Integer> getCover() {
+		return this.cover;
 	}
 
-	public Set<SubSet> getIdPartitionNotUsed() {
-		return idPartitionNotUsed;
+	public Set<SubSet> getPartitionNotUsed() {
+		return this.PartitionNotUsed;
+	}
+
+	public Set<Integer> getNotCover() {
+		return this.notCover;
 	}
 }
