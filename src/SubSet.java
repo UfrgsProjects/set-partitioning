@@ -1,11 +1,12 @@
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 /**
 *
 * Cria Partições, subconjuntos  com seus custos.
 *
 */
-public class SubSet{
+public class SubSet {
 
 	private Set<Integer> partition;
 	private int cost;
@@ -16,7 +17,15 @@ public class SubSet{
 		this.cost = cost;
 		this.partition = partition;
 	}
-
+	/**
+	 * Clona SubSet
+	 * @param subset
+	 * @return
+	 */
+	public static SubSet clone(SubSet subset){
+		return new SubSet(subset.id, subset.cost, new TreeSet<Integer>(subset.getPartition()));
+	}
+	
 	public Set<Integer> getPartition(){
 		return this.partition;
 	}
@@ -37,42 +46,27 @@ public class SubSet{
 			s += i.next()+" ";	
 		return "SubSet [id=" + id + ", cost=" + cost +", SubSet= "+ s + "]";
 	}
-}
-/*
-class Key{
-	private int id;
-	private int cost;
-	private int size;
-	
-	public Key(int id, int cost, int size) {
-		this.id = id;
-		this.cost = cost;
-		this.size = size;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getCost() {
-		return cost;
-	}
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-	public int getSize() {
-		return size;
-	}
-	public void setSize(int size) {
-		this.size = size;
-	}
-
+	/*
 	@Override
-	public String toString() {
-		return "Key [id=" + id + ", cost=" + cost + ", size=" + size + "]";
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SubSet other = (SubSet) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	*/
 }
-*/

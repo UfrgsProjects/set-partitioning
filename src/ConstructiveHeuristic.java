@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
@@ -10,7 +11,6 @@ import com.google.common.collect.Sets;
  *
  */
 public class ConstructiveHeuristic {
-
 	/**
 	 * Cria solução inicial do problema
 	 * XXX Solução nao é factível, pois o SPP é muito restrito
@@ -18,14 +18,18 @@ public class ConstructiveHeuristic {
 	 * @param solution
 	 */
 	public static void findInicialSolution(Set<SubSet> partitions, Solution solution){
+		Set<Integer> universe = new HashSet<Integer>();
 		for (SubSet subSet : partitions) {
 			if(Sets.intersection(subSet.getPartition(), solution.getCover()).isEmpty()){
 				solution.getPartitionSolution().add(subSet);
 				solution.getCover().addAll(subSet.getPartition());
 				solution.addCost(subSet.getCost());
-			}else
+				universe.addAll(subSet.getPartition());
+			}else{
 				solution.getPartitionNotUsed().add(subSet);
+				universe.addAll(subSet.getPartition());
+			}
 		}
-		solution.getNotCover().addAll(Sets.difference(solution.getUniverse(), solution.getCover()));
+		solution.getNotCover().addAll(Sets.difference(universe, solution.getCover()));
 	}
 }
