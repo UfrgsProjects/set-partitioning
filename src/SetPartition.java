@@ -33,16 +33,17 @@ public class SetPartition{
 	   // "/home/rodrigo/set-partitioning/instancias/sppnw41.txt"   11307	
 	  	
 	   Parsing parsing = new Parsing(directory, ordenation); 	
-   	   //Solution solution = new Solution(parsing.getUniverse());   
-	   Solution solution = new Solution();   
-	   ConstructiveHeuristic.findInicialSolution(parsing.getPartitions(),solution);
+   	   Solution solution = new Solution();   
+	   Heuristic.findInicialSolution(parsing.getPartitions(),solution);
 	   solution.ShowSolution();
 	   solution.showElements();
 	   System.out.println("Custo: "+solution.getCost());
-		   
-   		SimulatedAnnealing SA = new SimulatedAnnealing(parsing.getPartitions());
-   		System.out.println(SA.selectPartitions(solution.getPartitionSolution()));
-   		
+	   Solution s = Heuristic.neighbour(solution);
+	   System.out.println();
+	   s.ShowSolution();
+	   s.showElements();
+	   System.out.println("Custo: "+s.getCost());
+		 				
 	   
 	   
 	   /*

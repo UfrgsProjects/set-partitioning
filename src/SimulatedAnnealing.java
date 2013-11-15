@@ -1,6 +1,3 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 
 public class SimulatedAnnealing {
@@ -10,7 +7,7 @@ public class SimulatedAnnealing {
 	
 	public SimulatedAnnealing(Set<SubSet> partitions){
 		this.current = new Solution();
-		ConstructiveHeuristic.findInicialSolution(partitions, this.current);
+		Heuristic.findInicialSolution(partitions, this.current);
 		this.best = this.current;
 	}
 	
@@ -23,8 +20,7 @@ public class SimulatedAnnealing {
 		// Loop ate temperatura esfriar
 		while(temperature > 1){
 			// Create new neighbour
-			// TODO Estrategia para criar nova solução
-			Solution newSolution = new Solution();
+			Solution newSolution = Heuristic.neighbour(current);
 			
 			// Get energy of solutions
             currentEnergy =  current.getCost(); 	
@@ -41,33 +37,6 @@ public class SimulatedAnnealing {
             // Cool system
             temperature *= 1-coolerRate;
 		}
-	}
-	/**
-	 * Procura Solução na vizinhança
-	 * @param solution
-	 * @return
-	 */
-	private Solution neighbour(Solution solution){
-		Set<SubSet> removeParts = selectPartitions(solution.getPartitionSolution());
-		
-		
-		
-					
-		return null;
-	}	
-	/**
-	 * Seleciona 3 partições ou menos a principio para remover da partição
-	 * @param partitionsSolution
-	 * @return
-	 */
-	public Set<SubSet> selectPartitions(Set<SubSet> partitionSolution ){
-		Set<SubSet> parts = new HashSet<SubSet>();
-		Iterator<SubSet> it = partitionSolution.iterator(); 
-		while(parts.size() != 3 && it.hasNext()){
-			parts.add(it.next());	
-			System.out.println("Enter here: "+parts.size());
-		}
-		return parts;
 	}
 	
 	

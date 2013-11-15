@@ -2,10 +2,10 @@
 # Pasta set-partitioning deve ser colocada dentro da home
 
 compile:
-	javac -d class *.java
+	javac -d class -cp lib/guava-15.0.jar *.java
 
 execute:
-	java -cp class SetPartition	
+	java -cp class:lib/guava-15.0.jar SetPartition ../instancias/sppnw32.txt
 
 creat-datafiles:
 	java -cp class -XX:MaxHeapSize=2048m -Xmx1024m MathProgDatConversor ../instancias ../glpk/dat

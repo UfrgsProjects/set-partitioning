@@ -26,10 +26,17 @@ public class Solution {
 
 	public static Solution clone(Solution solution) {
 		Solution clone = new Solution();
+		/*
 		clone.setCover(new HashSet<Integer>(solution.getCover()));
 		clone.setNotCover(new HashSet<Integer>(solution.getNotCover()));
 		clone.setPartitionSolution(new HashSet<SubSet>(solution.getPartitionSolution()));
 		clone.setPartitionNotUsed(new HashSet<SubSet>(solution.getPartitionNotUsed()));
+		clone.setCost(solution.getCost());
+		*/
+		clone.setCover(solution.getCover());
+		clone.setNotCover(solution.getNotCover());
+		clone.setPartitionSolution(solution.getPartitionSolution());
+		clone.setPartitionNotUsed(solution.getPartitionNotUsed());
 		clone.setCost(solution.getCost());
 		return clone;
 	}
@@ -82,6 +89,18 @@ public class Solution {
 		this.cost -= value;
 	}
 
+	public void addPartition(SubSet subset){
+		this.partitionSolution.add(subset);
+		this.PartitionNotUsed.remove(subset);
+		this.cost += subset.getCost();
+	}
+	
+	public void removePartition(SubSet subset){
+		this.partitionSolution.remove(subset);
+		this.PartitionNotUsed.add(subset);
+		this.cost -= subset.getCost();
+	}
+	
 	/* ----- GETTERS E SETTERS ----- */
 	/*
 	 * public Set<Integer> getUniverse(){ return this.universe; }
@@ -107,19 +126,27 @@ public class Solution {
 	}
 
 	public void setCover(Set<Integer> cover) {
-		this.cover = cover;
+		Set<Integer> temp = new HashSet<Integer>();
+		temp.addAll(cover);
+		this.cover = temp;;
 	}
 
 	public void setNotCover(Set<Integer> notCover) {
-		this.notCover = notCover;
+		Set<Integer> temp = new HashSet<Integer>();
+		temp.addAll(notCover);
+		this.notCover = temp;
 	}
 
 	public void setPartitionSolution(Set<SubSet> partitionSolution) {
-		this.partitionSolution = partitionSolution;
+		Set<SubSet> temp = new HashSet<>();
+		temp.addAll(partitionSolution);
+		this.partitionSolution = temp; 
 	}
 
 	public void setPartitionNotUsed(Set<SubSet> partitionNotUsed) {
-		PartitionNotUsed = partitionNotUsed;
+		Set<SubSet> temp = new HashSet<>();
+		temp.addAll(partitionNotUsed);
+		PartitionNotUsed = temp;
 	}
 
 	public void setCost(int cost) {
