@@ -9,16 +9,20 @@ public class SimulatedAnnealing {
 		this.current = new Solution();
 		Heuristic.findInicialSolution(partitions, this.current);
 		this.best = this.current;
+		this.current.ShowSolution();
+		this.current.showElements();
+		System.out.println("Custo: "+this.current.getCost());
 	}
-	
+	//TODO Passar como parametro valores como temperatura  e coller
 	public void execute(){
-		double temperature = 1000; // Temperatura inicial
+		double temperature = 1000000; // Temperatura inicial
 		double coolerRate = 0.003; // resfriamento
 		int currentEnergy = 0;
 		int neighbourEnergy = 0;
 		
 		// Loop ate temperatura esfriar
 		while(temperature > 1){
+			//System.out.println("temp :"+temperature);
 			// Create new neighbour
 			Solution newSolution = Heuristic.neighbour(current);
 			

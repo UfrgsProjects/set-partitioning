@@ -33,28 +33,18 @@ public class SetPartition{
 	   // "/home/rodrigo/set-partitioning/instancias/sppnw41.txt"   11307	
 	  	
 	   Parsing parsing = new Parsing(directory, ordenation); 	
-   	   Solution solution = new Solution();   
-	   Heuristic.findInicialSolution(parsing.getPartitions(),solution);
-	   solution.ShowSolution();
-	   solution.showElements();
-	   System.out.println("Custo: "+solution.getCost());
-	   Solution s = Heuristic.neighbour(solution);
-	   System.out.println();
-	   s.ShowSolution();
-	   s.showElements();
-	   System.out.println("Custo: "+s.getCost());
-		 				
-	   
-	   
-	   /*
-	   Iterator<SubSet> i = partitions.iterator();	
 	   long tempoInicial = System.currentTimeMillis();
-	   while(i.hasNext())
-		  System.out.println(i.next());
+	   SimulatedAnnealing SA = new SimulatedAnnealing(parsing.getPartitions()); 
+	   SA.execute();
 	   long tempoFinal = System.currentTimeMillis();
-	   System.out.printf("%.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
-	   System.out.println("quantidade: "+partitions.size());
-	 */
+	   System.out.println();
+	   SA.getBest().ShowSolution();
+	   SA.getBest().showElements();
+	   System.out.println("Custo: "+SA.getBest().getCost());
+		 				
+	   System.out.printf("Time SA: %.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
+	   
+	  
   
 	  
 	}
