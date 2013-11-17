@@ -8,52 +8,36 @@ public class SimulatedAnnealing {
 	public SimulatedAnnealing(Set<SubSet> partitions){
 		this.current = new Solution();
 		Heuristic.findInicialSolution(partitions, this.current);
-		this.best = this.current;
-		//this.current.ShowSolution();
-		//this.current.showElements();
-		//System.out.println("Custo: "+this.current.getCost());
+		this.best = Solution.clone(this.current);
 	}
-	//TODO Passar como parametro valores como temperatura  e coller
+	
 	public void execute(double temperature, double coolerRate){
-		//double temperature = 1000000; // Temperatura inicial
-		//double coolerRate = 0.003; // resfriamento
-		if(temperature == 0)
-			temperature = 1000;
-		if(coolerRate == 0)
-			coolerRate = 0.003;	
-		
 		int currentEnergy = 0;
 		int neighbourEnergy = 0;
 		
-		// Loop ate temperatura esfriar
+		// Loop ate temperatura resfriar
 		while(temperature > 1){
-			//System.out.println("temp :"+temperature);
 			// Create new neighbour
 			Solution newSolution = Heuristic.neighbour(current);
-			
 			// Get energy of solutions
             currentEnergy =  current.getCost(); 	
             neighbourEnergy = newSolution.getCost(); 
-                      
             // Decide se aceita o novo vizinho
             if (probability(currentEnergy, neighbourEnergy, temperature) > Math.random()) 
-               current = newSolution;
-                                   
+               current = Solution.clone(newSolution);
             //  Analisa se a melhor soluçao encontrada 
             if (current.getCost() < best.getCost()) 
-                best =  current; 
-                                 
-            // Cool system
+                best = Solution.clone(current); 
+            // Resfria sistema
             temperature *= 1-coolerRate;
 		}
 	}
-	
-	
+		
 	public static double probability(int energy, int newEnergy, double temperature){
 		double value = 0;
 		
-		if(newEnergy > energy)
- 		// Solução melhor, aceita
+		if(newEnergy < energy)
+ 		// Solução melhor, aceita - Minimizar custo
 			value = 1.0;
 		else 
 		// solução pior, calcula-se probabilidade para aceitação
