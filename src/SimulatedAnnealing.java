@@ -26,9 +26,15 @@ public class SimulatedAnnealing {
 	            // Decide se aceita o novo vizinho
 	            if (probability(currentEnergy, neighbourEnergy, temperature) > Math.random()) 
 	               current = Solution.clone(newSolution);
+	            
+	            if(! best.feasible() && current.feasible())
+	            	best = Solution.clone(current); 
+	            
 	            //  Analisa se a melhor soluçao encontrada 
 	            if (current.getCost() < best.getCost() && current.feasible()) 
 	                best = Solution.clone(current); 
+	            
+	            
 	            loop--;
 			}
 			loop = repeat;
