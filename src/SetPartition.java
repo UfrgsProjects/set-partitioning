@@ -4,8 +4,8 @@ import java.util.Date;
 /**
 *
 * Aplicação do Algoritmo
-* Uso: java -cp class SetPartition [data path] [typeOrdenation]
-* [data_path] = Arquivos com dados da instancia
+* Uso: java -cp class SetPartition [Data path] [TypeOrdenation] [Solution path] [Temperature] [Cooler] [Loop] [Time] 
+* [Data_path] = Arquivos com dado da instancia
 * [TypeOrdenation] = Tipo de ordenação => 0 : nenhuma ordenação(Leitura do arquivo)
 * [TypeOrdenation] = Tipo de ordenação => 1 : Ordenar Arvore por custo
 * [TypeOrdenation] = Tipo de ordenação => 2 : Ordenar pelo tamanho da partição
@@ -18,6 +18,7 @@ public class SetPartition{
       String directorySolution = "";
       int ordenation = 0;
       int repeat = 1000;
+      int time = 3600;
       double temperature = 1000;
       double coolerRate = 0.005;
        
@@ -35,7 +36,7 @@ public class SetPartition{
 	  				args[2] = args[2].replace(".txt", "-");
 	  				directorySolution =  args[2]+new Date().toString()+".txt";
 	  				break;
-	  		case 6:
+	  		case 7:
 	  				directory = args[0]; 
 	  				ordenation = Integer.parseInt(args[1]);
 	  				args[2] = args[2].replace(".txt", "-");
@@ -43,6 +44,7 @@ public class SetPartition{
 	  				temperature = Double.valueOf(args[3]);
 	  				coolerRate = Double.valueOf(args[4]);
 	  				repeat = Integer.parseInt(args[5]);
+	  				repeat = Integer.parseInt(args[6]);
 	  				break;
 	  		default: 
 	  			System.out.println("Number of Parameters invalid");
@@ -56,7 +58,7 @@ public class SetPartition{
 	   System.out.println("***** Start *****");	   
 	   long tempoInicial = System.currentTimeMillis();
 	   SimulatedAnnealing SA = new SimulatedAnnealing(parsing.getPartitions()); 
-	   SA.execute(temperature, coolerRate, repeat);
+	   SA.execute(temperature, coolerRate, repeat, time);
 	   long tempoFinal = System.currentTimeMillis();
 	   System.out.printf("Time SA: %.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
 	   System.out.println("Writing..... "+directorySolution);
