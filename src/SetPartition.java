@@ -17,6 +17,7 @@ public class SetPartition{
       String directory = "";
       String directorySolution = "";
       int ordenation = 0;
+      int repeat = 1000;
       double temperature = 1000;
       double coolerRate = 0.005;
        
@@ -34,13 +35,14 @@ public class SetPartition{
 	  				args[2] = args[2].replace(".txt", "-");
 	  				directorySolution =  args[2]+new Date().toString()+".txt";
 	  				break;
-	  		case 5:
+	  		case 6:
 	  				directory = args[0]; 
 	  				ordenation = Integer.parseInt(args[1]);
 	  				args[2] = args[2].replace(".txt", "-");
 	  				directorySolution = args[2]+new Date().toString()+".txt";
 	  				temperature = Double.valueOf(args[3]);
 	  				coolerRate = Double.valueOf(args[4]);
+	  				repeat = Integer.parseInt(args[5]);
 	  				break;
 	  		default: 
 	  			System.out.println("Number of Parameters invalid");
@@ -48,13 +50,13 @@ public class SetPartition{
 			    return;	
 	  	}
 	   
-	    System.out.println();  	  
+	   System.out.println();  	  
 	   System.out.println("Reading..... "+directory);	
 	   Parsing parsing = new Parsing(directory, ordenation); 	
 	   System.out.println("***** Start *****");	   
 	   long tempoInicial = System.currentTimeMillis();
 	   SimulatedAnnealing SA = new SimulatedAnnealing(parsing.getPartitions()); 
-	   SA.execute(temperature, coolerRate);
+	   SA.execute(temperature, coolerRate, repeat);
 	   long tempoFinal = System.currentTimeMillis();
 	   System.out.printf("Time SA: %.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
 	   System.out.println("Writing..... "+directorySolution);

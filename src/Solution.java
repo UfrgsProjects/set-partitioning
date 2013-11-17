@@ -26,13 +26,6 @@ public class Solution {
 
 	public static Solution clone(Solution solution) {
 		Solution clone = new Solution();
-		/*
-		clone.setCover(new HashSet<Integer>(solution.getCover()));
-		clone.setNotCover(new HashSet<Integer>(solution.getNotCover()));
-		clone.setPartitionSolution(new HashSet<SubSet>(solution.getPartitionSolution()));
-		clone.setPartitionNotUsed(new HashSet<SubSet>(solution.getPartitionNotUsed()));
-		clone.setCost(solution.getCost());
-		*/
 		clone.setCover(solution.getCover());
 		clone.setNotCover(solution.getNotCover());
 		clone.setPartitionSolution(solution.getPartitionSolution());

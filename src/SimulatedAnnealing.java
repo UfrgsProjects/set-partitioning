@@ -11,24 +11,28 @@ public class SimulatedAnnealing {
 		this.best = Solution.clone(this.current);
 	}
 	
-	public void execute(double temperature, double coolerRate){
+	public void execute(double temperature, double coolerRate, int repeat){
 		int currentEnergy = 0;
 		int neighbourEnergy = 0;
-		
+		int loop = repeat;
 		// Loop ate temperatura resfriar
-		while(temperature > 1){
-			// Create new neighbour
-			Solution newSolution = Heuristic.neighbour(current);
-			// Get energy of solutions
-            currentEnergy =  current.getCost(); 	
-            neighbourEnergy = newSolution.getCost(); 
-            // Decide se aceita o novo vizinho
-            if (probability(currentEnergy, neighbourEnergy, temperature) > Math.random()) 
-               current = Solution.clone(newSolution);
-            //  Analisa se a melhor soluçao encontrada 
-            if (current.getCost() < best.getCost()) 
-                best = Solution.clone(current); 
-            // Resfria sistema
+		while(temperature > 0.1){
+			while(loop != 0){
+				// Create new neighbour
+				Solution newSolution = Heuristic.neighbour(current);
+				// Get energy of solutions
+	            currentEnergy =  current.getCost(); 	
+	            neighbourEnergy = newSolution.getCost(); 
+	            // Decide se aceita o novo vizinho
+	            if (probability(currentEnergy, neighbourEnergy, temperature) > Math.random()) 
+	               current = Solution.clone(newSolution);
+	            //  Analisa se a melhor soluçao encontrada 
+	            if (current.getCost() < best.getCost() && current.feasible()) 
+	                best = Solution.clone(current); 
+	            loop--;
+			}
+			loop = repeat;
+	        // Resfria sistema
             temperature *= 1-coolerRate;
 		}
 	}

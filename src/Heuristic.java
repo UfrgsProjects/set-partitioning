@@ -1,14 +1,14 @@
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
 
 /**
  * 
- * Cria Heurística Construtiva do problema set partitioning
- * Cria uma solução inicial para o problema.
- * 
+ * Classe responsável por gerenciar heuristicas de contrução e 
+ * 	vizinhança de soluções 
  *
  */
 public class Heuristic {
@@ -52,15 +52,7 @@ public class Heuristic {
 		// retira custo da solução das partições retiradas
 		for(SubSet subset : removeParts)
 			newSolution.subCost(subset.getCost());
-		/*
-		System.out.println("new Partition Solution: "+newSolution.getPartitionSolution());
-		System.out.println("new Partition NOT USED: "+newSolution.getPartitionNotUsed());
-		System.out.println("new Cover: "+newSolution.getCover());
-		System.out.println("new NotCover: "+newSolution.getNotCover());
-		System.out.println("new Cost: "+newSolution.getCost());
-		System.out.println();
-		*/
-		
+			
 		Set<Integer> result = new HashSet<Integer>();
 		Iterator<SubSet> it = newSolution.getPartitionNotUsed().iterator();
 		 while(it.hasNext()){
@@ -101,8 +93,9 @@ public class Heuristic {
 	 */
 	private static Set<SubSet> selectPartitions(Set<SubSet> partitionSolution ){
 		Set<SubSet> parts = new HashSet<SubSet>();
+		int num = new Random().nextInt(5) + 1;
 		Iterator<SubSet> it = partitionSolution.iterator(); 
-		while(parts.size() != 3 && it.hasNext())
+		while(parts.size() != num && it.hasNext())
 			parts.add(it.next());	
 		return parts;
 	}
