@@ -1,6 +1,5 @@
 import java.util.Date;
 
-
 /**
 *
 * Aplicação do Algoritmo
@@ -21,7 +20,7 @@ public class SetPartition{
       int time = 3600;
       double temperature = 1000;
       double coolerRate = 0.005;
-       
+          
 	  	switch(args.length){
 	  		case 1: 
 	  				directory = args[0]; 
@@ -62,8 +61,7 @@ public class SetPartition{
 	   long tempoFinal = System.currentTimeMillis();
 	   System.out.printf("Time SA: %.3f segundos%n", (tempoFinal - tempoInicial) / 1000d);
 	   System.out.println("Writing..... "+directorySolution);
-	   
-	   
+	   	   
 	   ArchiveWrite archiveWrite = new ArchiveWrite(directorySolution);
 	   archiveWrite.writeLine("Time: "+(tempoFinal - tempoInicial) / 1000d);
 	   archiveWrite.writeLine("****** Solution ********");
@@ -76,8 +74,9 @@ public class SetPartition{
 				archiveWrite.writeLineNoBreak(i+", ");
 	   }
 	    archiveWrite.writeLine("");
+	    archiveWrite.writeLine("Custo Inicial: "+SA.getInicialSoltution());
 	    archiveWrite.writeLine("Custo: "+SA.getBest().getCost());
-		System.out.println();
+	    System.out.println();
 		archiveWrite.close();
 		
 		System.out.println("***** END *******");

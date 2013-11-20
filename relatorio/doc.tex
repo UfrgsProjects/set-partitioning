@@ -1,0 +1,267 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 10pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+\definecolor{highlight}{RGB}{255,251,204} 
+\definecolor{DarkGreen}{rgb}{0.0,0.4,0.0} % Comment color
+
+
+\lstdefinestyle{Style1}
+{
+  language=Java,
+%  basicstyle=\ttfamily\small, 
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\color{jpurple}\bfseries,
+  stringstyle=\color{red},
+  commentstyle=\color{verde},
+  morecomment=[s][\color{blue}]{/**}{*/},
+  extendedchars=true, 
+  showspaces=false, 
+  showstringspaces=false, 
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true, 
+  backgroundcolor=\color{highlight}, 
+  breakautoindent=true, 
+  captionpos=b,
+  xleftmargin=0pt,
+  tabsize=2
+}
+
+
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} 
+\\\@date 
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+\newcommand{\insertcode}[2]{\begin{itemize}\item[]\lstinputlisting[caption=#2,label=#1,style=Style1]{#1}\end{itemize}}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Set-Partitioning}\\ % Title
+Simullated Annealing} % Subtitle
+
+\author{\textsc{Rodrigo Leite e Felipe Paula} % Author
+\\{\textit{Universidade Federal do Rio Grande do Sul}}} % Institution
+
+\date{\today} 
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY  \cite{Smith:2012qr}; \cite{Smith:2013jd}
+%----------------------------------------------------------------------------------------
+
+\section*{Introdução}
+Este trabalho tem por finalidade aplicar o algoritmo de simmulated annealing no 
+problema de particionamento de conjuntos, a fim de encontrar soluções soluções aproximadas ou
+até ótimas do problema.
+
+%------------------------------------------------
+
+\section*{Descrição do Problema e Formulação matemática}
+O problema de particionamento de conjuntos consiste em cobrir um conjunto $S$ tal que cada subconjunto $S_j$ com $j \in \{1 \dots m\} $. Cubra $n$ elementos, de modo que todos os subconjuntos sejam disjuntos entre si.
+
+\begin{align*}
+  \textbf{min}\qquad &  \sum_{j=1}^m c_jx_j \\
+  \textbf{s.a}\qquad
+  & \sum_{j=1}^{m} a_{ij} x_j  = 1, \forall i \\
+  & x \in \{0,1\}
+\end{align*}
+
+\section*{Descrição com Detalhes do Algoritmo Proposto}
+Como foi feito o algoritmo implementado 
+
+\subsection*{Representação do Problema}
+Modelamos o problema definindo estruturas as quais representariam as partições e o problema em si.
+A estrutura usada para representar as partições (Chamada de SubSet) tem os seguintes atributos:
+\begin{itemize}
+	\item Um conjunto de inteiros(nomeado partition), que representa elementos que a partição cobre.
+	\item Um inteiro(nomeado cost) que representa o seu custo.
+	\item Um inteiro(nomeado id) representando seu id - Coluna da matriz.
+\end{itemize} 
+
+\insertcode{code/SubSet.java}{Classe Representando as Partições}
+
+A estrutura que representa o problema (Chamanda de Solution), tem os seguintes atributos:
+\begin{itemize}
+	\item Um conjunto de inteiros(nomeado cover) representando os elementos cobertos
+	\item Um conjunto de inteiros(nomeado notCover) representando os elementos não cobertos
+	\item Um conjunto de partições(nomeado partitionSolution) a qual estão cobrindo o conjunto
+	\item Um conjunto de partições(nomeado partitionNotUsed) a qual não esta cobrindo o conjunto 
+\end{itemize}
+
+\insertcode{code/Solution.java}{Classe Representando o Problema}
+
+\subsection*{Estrutura de Dados}
+Neste trabalho, utilizamos a interface 
+Set \cite{website:java-set} e as implementações HashSet \cite{website:java-HashSet}  e TreeSet \cite{website:java-TreeSet}.
+A principal motivação para usar um Set é que ele não permite elementos duplicados e representa
+matematicamente, como o próprio nome diz, um conjunto.
+
+O uso da implementação HashSet foi utilizada pois permitia uma performace constantes O(1) como
+adicionar(add), remover(remove), contém(contains) e tamanho(size), além de iterar sobre esta coleção é muito mais rápido que um arrayList.
+
+O uso da implementação TreeSet provê operações (add, remove, contains) um custo log(n), todavia esta implementação foi usada, pois permitia ordenar elementos passando um comparador, para ordenar as partições por custo ou por tamanho da partição como uma estratégia de heurística construtiva. 
+
+\subsection*{Heurística Construtiva}
+A tentativa da heurística construtiva basea-se em ordenar as partições lidas do arquivo de
+entrada por custo ou por tamanho da partição através do TreeSet. 
+
+Na tentativa por custo, tenta-se obter uma solução com o menor custo possível, almejando se aproximar da vizinhança da melhor solução possível.
+
+\insertcode{code/SubSetCostComparator.java}{Comparador por Custo}
+
+Por sua vez a ordenação por tamanho da partição, tem de a achar uma solução rapidamente, cobrindo todo a partição o mais rápido possível.
+
+\insertcode{code/SubSetSizeComparator.java}{Comparador por Tamanho da Partição}
+
+Ambas estratégias criam soluções algumas vezes factível e na sua maioria infactíveis. Por
+ser um problema muito restritivo a busca por uma solução factível pode demorar muito tempo, logo tentasse buscar uma boa solução e melhorá-la com o Simulated Annealing.
+
+\pagebreak
+
+\insertcode{code/Parsing.java}{Ordenamento no Parsing}
+
+
+
+\subsection*{Vizinhança e Estratégia de escolha de Vizinhos}
+
+Retira de 1 a 5 partições da solução e tenta substituir por 
+partições ainda não utilizadas
+
+
+\subsection*{Parâmetros do Método}
+Para executar a heurística era necessário digitar o seguinte comando:
+java -cp class:lib/guava-15.0.jar SetPartition [param1] [param2] [param3] [param4] [param5]
+[param6] [param7] 
+Os parametrôs utilizados para executar heutística foram:
+\begin{itemize}
+	\item param1 = Caminho do arquivo de entrada contendo problema
+	\item param2 = Tipo de Ordenação: 
+	\begin{itemize}
+		\item 0 = Nenhuma ordenação
+		\item 1 = Ordenar por custo
+		\item 2 = Ordenar por tamanho da partição 
+	\end{itemize}	
+	\item param 3 = Caminho de arquivo para escrita de solução do problema
+	\item param 4 = Temperatura inicial
+	\item param 5 = Taxa de resfriamento
+	\item param 6 = Loop interno do Simulated Annealing
+	\item param 7 = Tempo de Máximo para executar
+\end{itemize}
+Exemplo: 
+
+java -cp class:lib/guava-15.0.jar SetPartition instancia/delta.txt 1 solution/delta.txt 100 0.05 50 1800
+
+\subsection*{Critério de terminação}
+O critério de terminação do algoritmo ocorre por tempo, especifica como último paramêtro passado na linha de comando ou quando a temperatura fica abaixo de 0.1.
+
+
+\section*{Dados dos Resultados Obtidos}
+
+
+\begin{table}[h] % Add the following just after the closing bracket on this line to specify a position for the table on the page: [h], [t], [b] or [p] - these mean: here, top, bottom and on a separate page, respectively
+\centering % Centers the table on the page, comment out to left-justify
+\begin{tabular}{l c c c c c c} % The final bracket specifies the number of columns in the table along with left and right borders which are specified using vertical bars (|); each column can be left, right or center-justified using l, r or c. To specify a precise width, use p{width}, e.g. p{5cm}
+\toprule % Top horizontal line
+& \multicolumn{5}{c}{Valores} \\ % Amalgamating several columns into one cell is done using the \multicolumn command as seen on this line
+\cmidrule(l){2-6} % Horizontal line spanning less than the full width of the table - you can add (r) or (l) just before the opening curly bracket to shorten the rule on the left or right side
+Instância & Inicial &  Melhor & Tempo & GLPK & GLPK-Tempo & Desvio\\ % Column names row
+\midrule % In-table horizontal line
+delta & 0.962 & 0.821 & 0.356 & 0.682 & 0.801 & 0\\ % Content row 1
+heart & 0.981 & 0.891 & 0.527 & 0.574 & 0.984 & 0\\ % Content row 2
+meteor & 0.915 & 0.936 & 0.491 & 0.276 & 0.965 & 0\\ % Content row 3
+sppaa05 & 0.828 & 0.827 & 0.528 & 0.518 & 0.926 & 0\\ % Content row 4
+sppaa06 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\ % Content row 5
+sppnw16 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+sppnw32 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+sppnw34 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+sppnw36 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+sppnw41 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+sppus01 & 0.916 & 0.933 & 0.482 & 0.644 & 0.937 & 0\\
+\midrule % In-table horizontal line
+\midrule % In-table horizontal line
+Average Rate & 0.920 & 0.882 & 0.477 & 0.539 & 0.923\\ % Summary/total row
+\bottomrule % Bottom horizontal line
+\end{tabular}
+\caption{Resultados da Meta-Heurística e GLPK} % Table caption, can be commented out if no caption is required
+\label{tab:template} % A label for referencing this table elsewhere, references are used in text as \ref{label}  A reference to Table \ref{tab:template}.
+\end{table}
+
+
+
+
+%------------------------------------------------
+
+\section*{Conclusão}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\bibliographystyle{unsrt}
+\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,10 +1,3 @@
-import java.util.Comparator;
-/**
-*
-* Compara dois SubSet  através do seu custo
-* Complexidade O(n logn) - Merge Sort	
-*
-*/
 public class SubSetCostComparator implements Comparator<SubSet> {
 
 	@Override
@@ -14,5 +7,4 @@ public class SubSetCostComparator implements Comparator<SubSet> {
 			value = -1;
 		return value;
 	}
-	
 }

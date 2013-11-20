@@ -4,11 +4,12 @@ public class SimulatedAnnealing {
 
 	private Solution best;
 	private Solution current;
-	
+	private int inicialSoltution;
 	public SimulatedAnnealing(Set<SubSet> partitions){
 		this.current = new Solution();
 		Heuristic.findInicialSolution(partitions, this.current);
 		this.best = Solution.clone(this.current);
+		this.inicialSoltution = this.current.getCost();
 	}
 	
 	public void execute(double temperature, double coolerRate, int repeat, int time){
@@ -17,15 +18,19 @@ public class SimulatedAnnealing {
 		int loop = repeat;
 		long endTime = 0;
 		long startTime = System.currentTimeMillis();
-		
+		boolean stop = false;
 		// Loop ate temperatura resfriar
 		while(temperature > 0.1){
-			endTime = System.currentTimeMillis();
-			
-			if((endTime - startTime) / 1000d > time)
+			if(stop == true)
 				break;
-			
 			while(loop != 0){
+			
+				// saida do laço pelo tempo
+				endTime = System.currentTimeMillis();
+				if((endTime - startTime) / 1000d >= time){
+					stop = true;
+					break;
+				}		
 				// Create new neighbour
 				Solution newSolution = Heuristic.neighbour(current);
 				
@@ -36,15 +41,23 @@ public class SimulatedAnnealing {
 	            // Decide se aceita o novo vizinho
 	            if (probability(currentEnergy, neighbourEnergy, temperature) > Math.random()) 
 	               current = Solution.clone(newSolution);
-	            
-	            if(! best.feasible() && current.feasible()){
+	                       	            
+	            //  Analisa se a melhor soluçao encontrada 
+	            if(current.getCost() < best.getCost()){
+	            	if(! best.feasible() ){
+	            		 best = Solution.clone(current);
+	            		 System.out.println("Find better solution"); 
+	            	}else if(current.feasible()){
+	            		 best = Solution.clone(current);
+	            		 System.out.println("Find Feasible solution");
+	            	}
+	            }else if(current.feasible() && ! best.feasible()){
 	            	best = Solution.clone(current);
-	            	System.out.println("Find Feasible Solution");
+	            	System.out.println("Find Feasible");
 	            }
 	            
-	            //  Analisa se a melhor soluçao encontrada 
-	            if (current.getCost() < best.getCost() && current.feasible()) 
-	                best = Solution.clone(current); 
+	          //  if (current.getCost() < best.getCost() && current.feasible()) 
+	            //    best = Solution.clone(current); 
 	                       
 	            loop--;
 			}
@@ -69,4 +82,8 @@ public class SimulatedAnnealing {
 	public Solution getBest() {
 		return best;
 	}
+
+	public int getInicialSoltution() {
+		return inicialSoltution;
+	}	
 }

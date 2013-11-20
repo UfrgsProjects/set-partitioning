@@ -52,10 +52,15 @@ public class Heuristic {
 		// retira custo da solução das partições retiradas
 		for(SubSet subset : removeParts)
 			newSolution.subCost(subset.getCost());
-			
+		
+		long startTime = System.currentTimeMillis();
+		long endTime = 0;
 		Set<Integer> result = new HashSet<Integer>();
 		Iterator<SubSet> it = newSolution.getPartitionNotUsed().iterator();
 		 while(it.hasNext()){
+			 endTime = System.currentTimeMillis();
+			 if((endTime - startTime) / 1000d >= 180)
+				 	break;
 			SubSet subSet = it.next();
 			// Quais elementos a partição cobre(Daqueles que nao estao cobertos)
 			result = Sets.difference(subSet.getPartition(), newSolution.getNotCover());
